@@ -7,7 +7,7 @@ function Login() {
   async function loginUser(e) {
     e.preventDefault();
 
-    const res = await fetch("http://localhost:1337/api/login", {
+    const res = await fetch("https://minhdunk.onrender.com/api/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

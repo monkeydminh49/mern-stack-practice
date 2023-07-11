@@ -10,7 +10,7 @@ function Register() {
   async function registerUser(e) {
     e.preventDefault();
 
-    const res = await fetch("http://localhost:1337/api/register", {
+    const res = await fetch("https://minhdunk.onrender.com/api/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

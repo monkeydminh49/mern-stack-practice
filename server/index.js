@@ -10,6 +10,10 @@ app.use(express.json())
 
 mongoose.connect(process.env.DATABASE_URI)
 
+app.get('/', (req, res) => {
+    res.send('Hello World!')
+})
+
 app.post('/api/register', async (req, res) => {
 
     console.log(req.body)
