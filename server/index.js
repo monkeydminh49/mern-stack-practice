@@ -3,6 +3,7 @@ const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose')
 const User = require('./models/user.model')
+const jwt = require('jsonwebtoken')
 require('dotenv').config()
 
 app.use(cors())
@@ -40,7 +41,10 @@ app.post('/api/login', async (req, res) => {
     })
 
     if (user) {
-        return res.json({ status: 'ok', user: true })
+
+        const accessToken = jwt.sign({ email: user.email, name: user.name }, process.env.ACCESS_TOKEN_SECRET)
+
+        return res.json({ status: 'ok', user: accessToken })
     } else {
         return res.json({ status: 'error', user: false })
     }

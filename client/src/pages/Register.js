@@ -6,11 +6,13 @@ function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassowrd] = useState("");
+  const uri = "https://minhdunk.onrender.com/api/register";
+  // const localUri = "http://localhost:1337/api/register";
 
   async function registerUser(e) {
     e.preventDefault();
 
-    const res = await fetch("https://minhdunk.onrender.com/api/register", {
+    const res = await fetch(uri, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -21,6 +23,15 @@ function Register() {
     })
 
     const data = await res.json();
+
+    if (data.status === 'ok') {
+      alert("Register successful")
+      window.location.href = "/login"
+    } else {
+      alert(data.error)
+    }
+
+
 
     console.log(data);
   }
