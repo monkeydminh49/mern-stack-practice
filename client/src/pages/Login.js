@@ -4,7 +4,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassowrd] = useState("");
   const uri = "https://minhdunk.onrender.com/api/login";
-  // const localUri = "http://localhost:1337/api/login";
+  const localUri = "http://localhost:1337/api/login";
   async function loginUser(e) {
     e.preventDefault();
 
