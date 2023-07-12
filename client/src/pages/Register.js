@@ -6,13 +6,21 @@ function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassowrd] = useState("");
+<<<<<<< HEAD
   const uri = "https://minhdunk.onrender.com/api/register";
   const localUri = "http://localhost:1337/api/register";
+=======
+  const apiURL = `${process.env.REACT_APP_API_URL}/register`;
+>>>>>>> 3bf9ab772ab81ec0d28716147d984e722acb8835
 
   async function registerUser(e) {
     e.preventDefault();
 
+<<<<<<< HEAD
     const res = await fetch(localUri, {
+=======
+    const res = await fetch(apiURL, {
+>>>>>>> 3bf9ab772ab81ec0d28716147d984e722acb8835
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
