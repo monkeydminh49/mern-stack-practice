@@ -3,12 +3,12 @@ import { useState } from 'react';
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassowrd] = useState("");
-  const uri = "https://minhdunk.onrender.com/api/login";
-  // const localUri = "http://localhost:1337/api/login";
+  const apiURL = `${process.env.REACT_APP_API_URL}/login`;
+
   async function loginUser(e) {
     e.preventDefault();
 
-    const res = await fetch(uri, {
+    const res = await fetch(apiURL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
