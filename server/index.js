@@ -51,6 +51,14 @@ app.post('/api/login', async (req, res) => {
 
 })
 
+app.get('/', async (req, res) => {
+    res.json({
+        status: 'ok',
+        message: 'Welcome to MinhDunk API',
+    })
+})
+
+
 app.listen(1337, () => {
     console.log('Example app listening on port 1337!')
 })
