@@ -12,7 +12,21 @@ app.use(express.json())
 mongoose.connect(process.env.DATABASE_URI)
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.json({ status: 'ok', message: 'Welcome to MinhDunk API' })
+})
+
+app.get('/api/users', async (req, res) => {
+    const users = await User.find()
+    res.json({ status: 'ok', users: users })
+})
+
+app.get('/api/users/:id', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        res.json({ status: 'ok', user: user })
+    } catch (e) {
+        res.json({ status: 'error', message: 'User does not exist' })
+    }
 })
 
 app.post('/api/register', async (req, res) => {
@@ -44,19 +58,14 @@ app.post('/api/login', async (req, res) => {
 
         const accessToken = jwt.sign({ email: user.email, name: user.name }, process.env.ACCESS_TOKEN_SECRET)
 
-        return res.json({ status: 'ok', user: accessToken })
+        res.json({ status: 'ok', user: accessToken })
     } else {
-        return res.json({ status: 'error', user: false })
+        res.json({ status: 'error', user: false })
     }
 
 })
 
-app.get('/', async (req, res) => {
-    res.json({
-        status: 'ok',
-        message: 'Welcome to MinhDunk API',
-    })
-})
+
 
 
 app.listen(1337, () => {
